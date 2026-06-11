@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion, Variants } from "framer-motion";
-import { ArrowUpRight, Code, Download, Send } from "lucide-react";
+import { ArrowUpRight, Code, Download, Send, ChevronDown } from "lucide-react";
 import { PERSONAL_INFO } from "@/constants/data";
 
 export default function HeroSection() {
@@ -92,9 +92,8 @@ export default function HeroSection() {
             </a>
 
             <a
-              href="file:///D:/01_HOME/000_Home/001_File_LinhTinh/TranQuangThong_CV_EN.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/TranQuangThong_CV_EN.pdf"
+              download="TranQuangThong_CV_EN.pdf"
               className="px-8 py-4 bg-transparent hover:bg-white/5 text-gray-300 hover:text-white rounded-xl font-medium flex items-center justify-center space-x-2 transition-all duration-300"
             >
               <Download className="w-4 h-4" />
@@ -104,10 +103,20 @@ export default function HeroSection() {
         </motion.div>
       </div>
       
-      {/* Bottom fade out scroll reveal guide */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-gray-500 flex flex-col items-center space-y-1.5 animate-bounce">
-        <span className="text-[10px] tracking-widest uppercase font-semibold">Scroll Down</span>
-        <div className="w-[1px] h-6 bg-gray-500/50" />
+      {/* Side scroll indicators for desktop */}
+      <div className="absolute bottom-24 left-8 hidden md:flex items-center space-x-2 -rotate-90 origin-left text-[9px] tracking-widest text-gray-500 font-bold uppercase select-none">
+        <span>Scroll Down</span>
+        <div className="w-12 h-[1px] bg-gray-500/30" />
+      </div>
+
+      <div className="absolute bottom-24 right-8 hidden md:flex items-center space-x-2 rotate-90 origin-right text-[9px] tracking-widest text-gray-500 font-bold uppercase select-none">
+        <div className="w-12 h-[1px] bg-gray-500/30" />
+        <span>Explore Work</span>
+      </div>
+
+      {/* Centered tiny scroll indicator for mobile */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 md:hidden text-gray-500/70 animate-bounce select-none">
+        <ChevronDown className="w-5 h-5" />
       </div>
     </section>
   );
