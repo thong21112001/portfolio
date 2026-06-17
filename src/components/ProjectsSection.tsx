@@ -40,41 +40,13 @@ export default function ProjectsSection() {
               >
                 <div>
                   {/* Top Bar */}
-                  <div className="flex justify-between items-start mb-4">
-                    <div>
-                      <span className="text-[11px] font-bold tracking-widest text-primary-violet uppercase">
-                        {project.subtitle}
-                      </span>
-                      <h3 className="font-heading font-bold text-xl text-white mt-1 group-hover:text-primary-violet transition-colors">
-                        {project.title}
-                      </h3>
-                    </div>
-
-                    {/* Project Links */}
-                    <div className="flex space-x-3">
-                      {project.links?.github && (
-                        <a
-                          href={project.links.github}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-gray-400 hover:text-white p-1.5 bg-white/5 rounded-lg border border-white/5 hover:border-white/10 transition-all"
-                          aria-label="GitHub Repository"
-                        >
-                          <GithubIcon className="w-4 h-4" />
-                        </a>
-                      )}
-                      {project.links?.demo && (
-                        <a
-                          href={project.links.demo}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-gray-400 hover:text-white p-1.5 bg-white/5 rounded-lg border border-white/5 hover:border-white/10 transition-all"
-                          aria-label="Live Demo"
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                        </a>
-                      )}
-                    </div>
+                  <div className="mb-4">
+                    <span className="text-[11px] font-bold tracking-widest text-primary-violet uppercase">
+                      {project.subtitle}
+                    </span>
+                    <h3 className="font-heading font-bold text-xl text-white mt-1 group-hover:text-primary-violet transition-colors">
+                      {project.title}
+                    </h3>
                   </div>
 
                   <p className="text-gray-400 text-sm font-sans mb-6 leading-relaxed">
@@ -92,6 +64,46 @@ export default function ProjectsSection() {
                       </span>
                     ))}
                   </div>
+
+                  {/* Project Links */}
+                  {(project.links?.github || project.links?.demo || project.links?.demos) && (
+                    <div className="flex flex-wrap items-center gap-3 mb-6">
+                      {project.links?.github && (
+                        <a
+                          href={project.links.github}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="flex items-center gap-2 text-xs font-semibold px-3 py-1.5 bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white rounded-lg border border-white/5 hover:border-white/10 transition-all duration-300"
+                        >
+                          <GithubIcon className="w-3.5 h-3.5" />
+                          <span>GitHub</span>
+                        </a>
+                      )}
+                      {project.links?.demo && (
+                        <a
+                          href={project.links.demo}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="flex items-center gap-2 text-xs font-semibold px-3 py-1.5 bg-primary-violet/10 hover:bg-primary-violet/20 text-primary-violet hover:text-white rounded-lg border border-primary-violet/20 hover:border-primary-violet/30 transition-all duration-300"
+                        >
+                          <ExternalLink className="w-3.5 h-3.5" />
+                          <span>Live Demo</span>
+                        </a>
+                      )}
+                      {project.links?.demos?.map((d) => (
+                        <a
+                          key={d.url}
+                          href={d.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="flex items-center gap-2 text-xs font-semibold px-3 py-1.5 bg-primary-violet/10 hover:bg-primary-violet/20 text-primary-violet hover:text-white rounded-lg border border-primary-violet/20 hover:border-primary-violet/30 transition-all duration-300"
+                        >
+                          <ExternalLink className="w-3.5 h-3.5" />
+                          <span>{d.label}</span>
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 {/* Challenges Dropdown */}

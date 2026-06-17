@@ -8,6 +8,7 @@ export interface Project {
   links?: {
     github?: string;
     demo?: string;
+    demos?: { label: string; url: string }[];
   };
   image?: string;
 }
@@ -92,31 +93,40 @@ export const PROJECTS: Project[] = [
   {
     id: "ecommerce-api",
     title: "E-commerce Backend System",
-    subtitle: "HappyCo & Vmix APIs (HIFIVEPLUS)",
+    subtitle: "Backend Developer (HIFIVEPLUS)",
     description: "Designed and implemented modular, high-volume RESTful APIs powering web and mobile e-commerce platforms. Handled complete order lifecycles including shopping carts, voucher validation, inventory, dynamic pricing, and carrier dispatch.",
     techStack: ["NestJS", "TypeScript", "MongoDB", "Redis", "AWS S3", "Swagger"],
     challenges: [
       "Optimized MongoDB aggregation pipelines to retrieve complex metrics, speeding up dashboard queries by 35%.",
-      "Integrated multi-carrier shipping APIs (GHN & Viettel Post) with custom error handling, dynamic cost calculation, and auto-retry policies.",
+      "Integrated multi-carrier shipping APIs (Giao Hang Nhanh & Viettel Post) with custom error handling, dynamic cost calculation, and auto-retry policies.",
       "Secured digital payments via ZaloPay, managing webhook states and reconciliation routines.",
       "Applied DRY and Clean Architecture structures, reducing code duplication by 40% across modules.",
       "Resolved race conditions in concurrent voucher redemption and inventory updates using Redis locks."
     ],
     links: {
-      github: "https://github.com/thong21112001/dashboard-vmix-admin"
+      demos: [
+        { label: "Vmix Vietnam", url: "https://vmixvietnam.vn" },
+        { label: "Kho Mộc", url: "https://khomoc.com" },
+        { label: "Giấy in Vinabill", url: "https://vinapos.info" }
+      ]
     }
   },
   {
     id: "gov-platform",
     title: "Provincial Digital Transformation Platform",
-    subtitle: "e-Government Portals (Khang Thi Group)",
+    subtitle: "e-Government Portals (Khang Thi)",
     description: "Participated in development and deployment of digital public service portals for multiple provinces (Quang Tri, Quang Ngai, Dak Lak) aligning with Vietnam's National Digital Transformation roadmap.",
     techStack: ["ASP.NET Core", "C#", "SQL Server", "Bootstrap", "jQuery", "ASP.NET Identity"],
     challenges: [
       "Built custom forms, secure e-citizen registration, document tracking, and custom approval workflow managers.",
       "Created high-performance batch processing and background export features, allowing seamless handling of thousands of concurrent portal submissions.",
       "Enforced rigid Role-Based Access Control (RBAC) and data sanitization guidelines, shielding sensitive public operations."
-    ]
+    ],
+    links: {
+      demos: [
+        { label: "Quảng Trị (Chăn nuôi, Thủy sản)", url: "https://csdlnn.quangtri.gov.vn" }
+      ]
+    }
   },
   {
     id: "imenu",
@@ -128,10 +138,7 @@ export const PROJECTS: Project[] = [
       "Designed a real-time order synchronization loop, guaranteeing instant order notifications for staff and kitchen.",
       "Built a secure client authentication mechanism using Firebase OTP SMS and hosted the platform on IIS (imenu.space & menudientu.com).",
       "Implemented a CQRS design pattern combined with Repository & Unit of Work for reliable transactional isolation."
-    ],
-    links: {
-      github: "https://github.com/thong21112001/Menulo-Super"
-    }
+    ]
   },
   {
     id: "fotosnap",
@@ -142,10 +149,7 @@ export const PROJECTS: Project[] = [
     challenges: [
       "Engineered clean state synchronization between client and server APIs using modular structures.",
       "Configured lightweight responsive media handling and offloaded image storage structures."
-    ],
-    links: {
-      github: "https://github.com/thong21112001/fotosnap"
-    }
+    ]
   }
 ];
 
@@ -166,7 +170,7 @@ export const EXPERIENCE: ExperienceItem[] = [
   {
     id: "exp-khangthi",
     role: ".NET Developer",
-    company: "Khang Thi Group",
+    company: "Khang Thi",
     period: "11/2024 - 11/2025",
     description: [
       "Developed web platforms and e-Government public portals for multiple provinces in Vietnam.",

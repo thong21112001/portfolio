@@ -43,7 +43,7 @@ export default function Navbar() {
           className="font-heading font-bold text-xl tracking-tight text-white group"
         >
           <span className="text-primary-violet transition-colors duration-300 group-hover:text-white">&lt;</span>
-          <span>Thong</span>
+          <span>TQThong</span>
           <span className="text-primary-violet transition-colors duration-300 group-hover:text-white"> /&gt;</span>
         </a>
 

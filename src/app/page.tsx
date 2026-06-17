@@ -5,7 +5,6 @@ import AboutSection from "@/components/AboutSection";
 import TechStack from "@/components/TechStack";
 import ProjectsSection from "@/components/ProjectsSection";
 import Experience from "@/components/Experience";
-import GithubStats from "@/components/GithubStats";
 import ContactSection from "@/components/ContactSection";
 import { PERSONAL_INFO } from "@/constants/data";
 
@@ -32,9 +31,6 @@ export default function Home() {
 
         {/* Experience Timeline */}
         <Experience />
-
-        {/* GitHub Statistics */}
-        <GithubStats />
 
         {/* Contact Form & Information */}
         <ContactSection />
