@@ -20,29 +20,29 @@ export default function ProjectsMasterDetail() {
               key={project.id}
               onClick={() => setSelectedId(project.id)}
               type="button"
-              className={`w-full text-left p-3.5 rounded-xl border transition-all duration-200 flex flex-col gap-2 cursor-pointer ${
+              className={`w-full text-left p-3.5 rounded-xl border transition-all duration-150 flex flex-col gap-2 cursor-pointer ${
                 isSelected
-                  ? "bg-purple-950/25 border-primary-violet shadow-lg shadow-purple-950/30 ring-1 ring-primary-violet/50"
-                  : "glass-panel border-white/5 hover:border-white/15 hover:bg-white/[0.03]"
+                  ? "bg-zinc-900/95 border-sky-500/50 shadow-md ring-1 ring-sky-500/30"
+                  : "glass-panel border-white/[0.07] hover:border-white/15 hover:bg-zinc-900/40"
               }`}
             >
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-primary-violet font-semibold">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-sky-400 font-semibold">
                   0{index + 1} • {project.subtitle.split("•")[1]?.trim() || project.subtitle}
                 </span>
                 {isSelected && (
                   <span className="flex h-2 w-2 relative">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-violet opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-violet" />
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-400" />
                   </span>
                 )}
               </div>
 
-              <h3 className="font-heading font-bold text-sm text-white line-clamp-1">
+              <h3 className="font-heading font-bold text-sm text-zinc-100 line-clamp-1">
                 {project.title}
               </h3>
 
-              <p className="text-[11px] text-gray-400 line-clamp-2 leading-relaxed">
+              <p className="text-[11px] text-zinc-400 line-clamp-2 leading-relaxed">
                 {project.description}
               </p>
 
@@ -50,13 +50,13 @@ export default function ProjectsMasterDetail() {
                 {project.techStack.slice(0, 3).map((tech) => (
                   <span
                     key={tech}
-                    className="text-[9.5px] px-1.5 py-0.5 bg-white/5 border border-white/5 text-gray-300 rounded"
+                    className="text-[9.5px] px-1.5 py-0.5 bg-zinc-900/90 border border-white/[0.08] text-zinc-300 rounded font-mono"
                   >
                     {tech}
                   </span>
                 ))}
                 {project.techStack.length > 3 && (
-                  <span className="text-[9.5px] px-1 py-0.5 text-gray-500 font-mono">
+                  <span className="text-[9.5px] px-1 py-0.5 text-zinc-500 font-mono">
                     +{project.techStack.length - 3}
                   </span>
                 )}
@@ -67,21 +67,21 @@ export default function ProjectsMasterDetail() {
       </div>
 
       {/* 2. Right Detail Card (md:col-span-8) */}
-      <div className="md:col-span-8 glass-panel p-4.5 sm:p-5 rounded-2xl flex flex-col justify-between overflow-y-auto custom-scrollbar gap-4 border-white/10">
+      <div className="md:col-span-8 glass-panel p-4.5 sm:p-5 rounded-2xl flex flex-col justify-between overflow-y-auto custom-scrollbar gap-4 border-white/[0.08]">
         <div className="flex flex-col gap-4">
           {/* Header Row: Title & Live Demos */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/5">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/[0.06]">
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-primary-violet font-bold">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-sky-400 font-bold">
                   {selectedProject.subtitle}
                 </span>
-                <span className="text-gray-600">•</span>
+                <span className="text-zinc-600">•</span>
                 <span className="text-[11px] text-emerald-400 font-medium flex items-center gap-1">
                   <ShieldCheck className="w-3.5 h-3.5" /> Production Ready
                 </span>
               </div>
-              <h2 className="font-heading font-extrabold text-xl sm:text-2xl text-white mt-0.5">
+              <h2 className="font-heading font-extrabold text-xl sm:text-2xl text-zinc-100 mt-0.5">
                 {selectedProject.title}
               </h2>
             </div>
@@ -89,7 +89,7 @@ export default function ProjectsMasterDetail() {
             {/* Live Production Links Button Group */}
             {selectedProject.links?.demos && selectedProject.links.demos.length > 0 && (
               <div className="flex flex-wrap items-center gap-1.5 shrink-0">
-                <span className="text-[10px] text-gray-400 uppercase tracking-wider font-mono mr-1 hidden sm:inline">
+                <span className="text-[10px] text-zinc-400 uppercase tracking-wider font-mono mr-1 hidden sm:inline">
                   Live:
                 </span>
                 {selectedProject.links.demos.map((demo) => (
@@ -98,7 +98,7 @@ export default function ProjectsMasterDetail() {
                     href={demo.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/25 text-xs font-medium transition-all group"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-sky-500/10 hover:bg-sky-500/20 text-sky-300 border border-sky-500/25 text-xs font-medium transition-all group"
                   >
                     <span>{demo.label}</span>
                     <ExternalLink className="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -109,31 +109,31 @@ export default function ProjectsMasterDetail() {
           </div>
 
           {/* Project Description */}
-          <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
+          <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
             {selectedProject.description}
           </p>
 
           {/* System Architecture Flow Diagram */}
-          <div className="bg-bg-dark/80 border border-white/5 p-3 sm:p-3.5 rounded-xl">
+          <div className="bg-zinc-950/60 border border-white/[0.07] p-3 sm:p-3.5 rounded-xl">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-[11px] font-mono uppercase tracking-wider text-gray-400 flex items-center gap-1.5">
-                <WorkflowIcon className="w-3.5 h-3.5 text-accent-blue" />
+              <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 flex items-center gap-1.5">
+                <WorkflowIcon className="w-3.5 h-3.5 text-sky-400" />
                 <span>System Architecture Flow</span>
               </span>
-              <span className="text-[10px] text-gray-500 font-mono">End-to-End Pipeline</span>
+              <span className="text-[10px] text-zinc-500 font-mono">End-to-End Pipeline</span>
             </div>
 
             <div className="flex flex-wrap items-center gap-2">
               {selectedProject.architectureFlow.map((step, idx) => (
                 <React.Fragment key={step}>
-                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-xs text-gray-200 font-mono font-medium">
-                    <span className="w-4 h-4 rounded-full bg-primary-violet/20 text-primary-violet text-[10px] flex items-center justify-center font-bold">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-zinc-900/90 border border-white/[0.08] text-xs text-zinc-200 font-mono font-medium">
+                    <span className="w-4 h-4 rounded-full bg-sky-500/15 text-sky-400 text-[10px] flex items-center justify-center font-bold">
                       {idx + 1}
                     </span>
                     <span>{step}</span>
                   </div>
                   {idx < selectedProject.architectureFlow.length - 1 && (
-                    <ArrowRight className="w-3.5 h-3.5 text-gray-500 shrink-0" />
+                    <ArrowRight className="w-3.5 h-3.5 text-zinc-600 shrink-0" />
                   )}
                 </React.Fragment>
               ))}
@@ -145,9 +145,9 @@ export default function ProjectsMasterDetail() {
             {selectedProject.metrics.map((metric) => (
               <div
                 key={metric}
-                className="px-2.5 py-2 rounded-lg bg-purple-950/20 border border-purple-500/20 flex items-center gap-2 text-xs text-purple-200"
+                className="px-2.5 py-2 rounded-lg bg-zinc-900/90 border border-white/[0.08] flex items-center gap-2 text-xs text-zinc-200"
               >
-                <Zap className="w-3.5 h-3.5 text-primary-violet shrink-0" />
+                <Zap className="w-3.5 h-3.5 text-sky-400 shrink-0" />
                 <span className="font-medium text-[11.5px]">{metric}</span>
               </div>
             ))}
@@ -156,18 +156,18 @@ export default function ProjectsMasterDetail() {
           {/* Key Technical Solutions & Impact */}
           <div>
             <div className="flex items-center justify-between mb-2">
-              <h4 className="text-xs font-mono uppercase tracking-wider text-gray-300 font-bold flex items-center gap-1.5">
-                <Layers className="w-3.5 h-3.5 text-accent-emerald" />
+              <h4 className="text-xs font-mono uppercase tracking-wider text-zinc-200 font-bold flex items-center gap-1.5">
+                <Layers className="w-3.5 h-3.5 text-sky-400" />
                 <span>Key Technical Solutions &amp; Engineering Decisions</span>
               </h4>
-              <span className="text-[10px] text-emerald-400/90 font-mono">Verified in Production</span>
+              <span className="text-[10px] text-emerald-400 font-mono">Verified in Production</span>
             </div>
 
             <ul className="space-y-2">
               {selectedProject.challenges.map((challenge, index) => (
                 <li
                   key={index}
-                  className="text-xs text-gray-300 leading-relaxed flex items-start gap-2 bg-white/[0.02] p-2 rounded-lg border border-white/5"
+                  className="text-xs text-zinc-300 leading-relaxed flex items-start gap-2 bg-zinc-950/50 p-2.5 rounded-lg border border-white/[0.06]"
                 >
                   <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                   <div>
@@ -180,15 +180,15 @@ export default function ProjectsMasterDetail() {
         </div>
 
         {/* Footer: Tech Stack Badges */}
-        <div className="pt-3 border-t border-white/5">
-          <div className="text-[10.5px] font-mono text-gray-400 uppercase tracking-wider mb-1.5">
+        <div className="pt-3 border-t border-white/[0.06]">
+          <div className="text-[10.5px] font-mono text-zinc-400 uppercase tracking-wider mb-1.5">
             Technologies &amp; Libraries Used:
           </div>
           <div className="flex flex-wrap gap-1.5">
             {selectedProject.techStack.map((tech) => (
               <span
                 key={tech}
-                className="text-[10.5px] px-2 py-0.5 rounded-md bg-white/5 text-gray-200 border border-white/10 font-medium"
+                className="text-[10.5px] px-2 py-0.5 rounded-md bg-zinc-900/90 text-zinc-300 border border-white/[0.08] hover:border-sky-400/40 hover:text-white transition-colors font-medium"
               >
                 {tech}
               </span>
@@ -246,7 +246,6 @@ function formatChallengeText(text: string) {
     "offline-first"
   ];
 
-  // Regex to split by keywords
   const regex = new RegExp(`(${keywords.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'gi');
   const parts = text.split(regex);
 
@@ -256,7 +255,7 @@ function formatChallengeText(text: string) {
         const isMatch = keywords.some(k => k.toLowerCase() === part.toLowerCase());
         if (isMatch) {
           return (
-            <span key={i} className="text-white font-semibold underline decoration-primary-violet/50 decoration-2">
+            <span key={i} className="text-zinc-100 font-semibold underline decoration-sky-400/50 decoration-2">
               {part}
             </span>
           );

@@ -31,20 +31,20 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "py-3 bg-bg-dark/80 backdrop-blur-md border-b border-white/5 shadow-lg shadow-black/20"
+          ? "py-3 bg-zinc-950/85 backdrop-blur-md border-b border-white/[0.07] shadow-lg shadow-black/40"
           : "py-6 bg-transparent"
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 md:px-8 flex justify-between items-center">
         <a
           href="#"
-          className="font-heading font-bold text-xl tracking-tight text-white group"
+          className="font-heading font-bold text-xl tracking-tight text-zinc-100 group"
         >
-          <span className="text-primary-violet transition-colors duration-300 group-hover:text-white">&lt;</span>
+          <span className="text-sky-400 transition-colors duration-200">&lt;</span>
           <span>TQThong</span>
-          <span className="text-primary-violet transition-colors duration-300 group-hover:text-white"> /&gt;</span>
+          <span className="text-sky-400 transition-colors duration-200"> /&gt;</span>
         </a>
 
         {/* Desktop Links */}
@@ -54,14 +54,14 @@ export default function Navbar() {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium text-gray-400 hover:text-white transition-colors duration-200 relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-primary-violet after:transition-all after:duration-300 hover:after:w-full"
+                className="text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-colors duration-150 relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-200 hover:after:w-full"
               >
                 {link.label}
               </a>
             ))}
           </div>
 
-          <div className="h-4 w-[1px] bg-white/10" />
+          <div className="h-4 w-[1px] bg-white/[0.08]" />
 
           {/* Social Icons */}
           <div className="flex items-center space-x-4">
@@ -69,26 +69,26 @@ export default function Navbar() {
               href={PERSONAL_INFO.github}
               target="_blank"
               rel="noreferrer"
-              className="text-gray-400 hover:text-white transition-colors duration-200"
+              className="text-zinc-400 hover:text-zinc-100 transition-colors duration-150"
               aria-label="GitHub"
             >
-              <GithubIcon className="w-5 h-5" />
+              <GithubIcon className="w-4 h-4" />
             </a>
             <a
               href={PERSONAL_INFO.linkedin}
               target="_blank"
               rel="noreferrer"
-              className="text-gray-400 hover:text-white transition-colors duration-200"
+              className="text-zinc-400 hover:text-zinc-100 transition-colors duration-150"
               aria-label="LinkedIn"
             >
-              <LinkedinIcon className="w-5 h-5" />
+              <LinkedinIcon className="w-4 h-4" />
             </a>
             <a
               href={`mailto:${PERSONAL_INFO.email}`}
-              className="text-gray-400 hover:text-white transition-colors duration-200"
+              className="text-zinc-400 hover:text-zinc-100 transition-colors duration-150"
               aria-label="Email"
             >
-              <Mail className="w-5 h-5" />
+              <Mail className="w-4 h-4" />
             </a>
           </div>
         </div>
@@ -96,7 +96,7 @@ export default function Navbar() {
         {/* Mobile menu button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-gray-400 hover:text-white focus:outline-none p-1"
+          className="md:hidden text-zinc-400 hover:text-zinc-100 focus:outline-none p-1"
           aria-label="Toggle Menu"
         >
           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -112,18 +112,18 @@ export default function Navbar() {
                 key={link.label}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="text-base font-medium text-gray-300 hover:text-white transition-colors duration-200 py-1"
+                className="text-base font-medium text-zinc-300 hover:text-zinc-100 transition-colors duration-150 py-1"
               >
                 {link.label}
               </a>
             ))}
-            <div className="h-[1px] w-full bg-white/5 my-2" />
+            <div className="h-[1px] w-full bg-white/[0.06] my-2" />
             <div className="flex space-x-6 py-2">
               <a
                 href={PERSONAL_INFO.github}
                 target="_blank"
                 rel="noreferrer"
-                className="text-gray-400 hover:text-white"
+                className="text-zinc-400 hover:text-zinc-100"
                 aria-label="GitHub"
               >
                 <GithubIcon className="w-5 h-5" />
@@ -132,14 +132,14 @@ export default function Navbar() {
                 href={PERSONAL_INFO.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="text-gray-400 hover:text-white"
+                className="text-zinc-400 hover:text-zinc-100"
                 aria-label="LinkedIn"
               >
                 <LinkedinIcon className="w-5 h-5" />
               </a>
               <a
                 href={`mailto:${PERSONAL_INFO.email}`}
-                className="text-gray-400 hover:text-white"
+                className="text-zinc-400 hover:text-zinc-100"
                 aria-label="Email"
               >
                 <Mail className="w-5 h-5" />

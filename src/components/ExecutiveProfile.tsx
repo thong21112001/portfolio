@@ -43,35 +43,20 @@ export default function ExecutiveProfile() {
   const getCategoryIcon = (iconName: string) => {
     switch (iconName) {
       case "server":
-        return <Server className="w-3.5 h-3.5 text-primary-violet" />;
+        return <Server className="w-3.5 h-3.5 text-sky-400" />;
       case "code":
-        return <Code2 className="w-3.5 h-3.5 text-accent-emerald" />;
+        return <Code2 className="w-3.5 h-3.5 text-sky-400" />;
       case "database":
-        return <Database className="w-3.5 h-3.5 text-accent-blue" />;
+        return <Database className="w-3.5 h-3.5 text-sky-400" />;
       default:
-        return <Workflow className="w-3.5 h-3.5 text-amber-400" />;
-    }
-  };
-
-  const getCategoryBadgeClass = (color: string) => {
-    switch (color) {
-      case "violet":
-        return "bg-purple-950/40 text-purple-200 border-purple-500/20";
-      case "emerald":
-        return "bg-emerald-950/40 text-emerald-200 border-emerald-500/20";
-      case "blue":
-        return "bg-blue-950/40 text-blue-200 border-blue-500/20";
-      default:
-        return "bg-amber-950/40 text-amber-200 border-amber-500/20";
+        return <Workflow className="w-3.5 h-3.5 text-sky-400" />;
     }
   };
 
   return (
     <aside className="lg:col-span-4 flex flex-col gap-3.5 lg:h-full lg:overflow-y-auto custom-scrollbar pr-0 lg:pr-1">
       {/* 1. Header Card */}
-      <div className="glass-panel p-4.5 sm:p-5 rounded-2xl flex flex-col gap-3.5 relative overflow-hidden shrink-0">
-        <div className="absolute top-0 right-0 w-36 h-36 bg-primary-violet/10 rounded-full blur-2xl pointer-events-none" />
-
+      <div className="glass-panel p-4.5 sm:p-5 rounded-2xl flex flex-col gap-3.5 relative overflow-hidden shrink-0 border-white/[0.07]">
         {/* Status Badge */}
         <div className="flex items-center justify-between">
           <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-[11px] font-medium tracking-wide">
@@ -82,55 +67,59 @@ export default function ExecutiveProfile() {
             <span>Available for Interview • Da Nang, VN</span>
           </div>
 
-          <span className="text-[10px] text-gray-500 font-mono">Bento v2.0</span>
+          <span className="text-[10px] text-zinc-500 font-mono">Bento v2.0</span>
         </div>
 
         {/* Name & Title */}
         <div>
-          <h1 className="font-heading font-extrabold text-2xl sm:text-3xl text-white tracking-tight leading-tight">
+          <h1 className="font-heading font-extrabold text-2xl sm:text-3xl text-zinc-100 tracking-tight leading-tight">
             {PERSONAL_INFO.name}
           </h1>
-          <div className="text-sm font-semibold text-primary-violet mt-0.5">
+          <div className="text-sm font-semibold text-sky-400 mt-0.5">
             {PERSONAL_INFO.title}
           </div>
-          <p className="text-[12px] text-gray-400 mt-0.5 font-mono">
+          <p className="text-[12px] text-zinc-400 mt-0.5 font-mono">
             {PERSONAL_INFO.subtitle}
           </p>
         </div>
 
         {/* 2-Sentence Concise Summary */}
-        <p className="text-xs text-gray-300 leading-relaxed">
+        <p className="text-xs text-zinc-300 leading-relaxed">
           Backend Engineer with 2+ years of production experience designing resilient RESTful APIs, high-throughput e-commerce systems, and SaaS platforms. Specialized in MongoDB aggregation tuning, Redis concurrency control, and clean modular architectures.
         </p>
 
-        {/* CTAs: Resume & 1-Click Copy */}
+        {/* CTAs: Resume (High-Contrast Linear Style) & 1-Click Copy */}
         <div className="flex flex-col gap-2 pt-1">
           <a
             href={PERSONAL_INFO.resumePath}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full py-2.5 px-4 bg-primary-violet hover:bg-violet-600 text-white rounded-xl text-xs font-semibold flex items-center justify-center gap-2 transition-all duration-200 shadow-md shadow-primary-violet/25 group cursor-pointer"
+            className="w-full py-2.5 px-4 bg-zinc-100 hover:bg-white text-zinc-950 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 transition-all duration-150 shadow-sm group cursor-pointer"
           >
-            <FileDown className="w-4 h-4 transition-transform group-hover:-translate-y-0.5" />
+            <FileDown className="w-4 h-4 transition-transform group-hover:-translate-y-0.5 text-zinc-900" />
             <span>Get Resume (TranQuangThong_CV_EN.pdf)</span>
-            <ExternalLink className="w-3.5 h-3.5 opacity-70 ml-auto" />
+            <ExternalLink className="w-3.5 h-3.5 opacity-60 ml-auto text-zinc-900" />
           </a>
 
           <div className="grid grid-cols-2 gap-2">
             <button
               onClick={handleCopyEmail}
               type="button"
-              className="py-2 px-3 bg-white/5 hover:bg-white/10 active:scale-[0.98] border border-white/10 rounded-xl text-xs font-medium text-gray-200 flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+              className={`py-2 px-3 border rounded-xl text-xs font-medium flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+                copiedEmail
+                  ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400"
+                  : "bg-zinc-900/90 hover:bg-zinc-800/90 text-zinc-300 border-white/[0.08]"
+              }`}
               title="Click to copy email address"
             >
               {copiedEmail ? (
                 <>
                   <Check className="w-3.5 h-3.5 text-emerald-400" />
-                  <span className="text-emerald-400 font-semibold">Copied!</span>
+                  <span className="font-semibold">Copied!</span>
                 </>
               ) : (
                 <>
-                  <Copy className="w-3.5 h-3.5 text-gray-400" />
+                  <Copy className="w-3.5 h-3.5 text-zinc-400" />
                   <span>Copy Email</span>
                 </>
               )}
@@ -139,17 +128,21 @@ export default function ExecutiveProfile() {
             <button
               onClick={handleCopyPhone}
               type="button"
-              className="py-2 px-3 bg-white/5 hover:bg-white/10 active:scale-[0.98] border border-white/10 rounded-xl text-xs font-medium text-gray-200 flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+              className={`py-2 px-3 border rounded-xl text-xs font-medium flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+                copiedPhone
+                  ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400"
+                  : "bg-zinc-900/90 hover:bg-zinc-800/90 text-zinc-300 border-white/[0.08]"
+              }`}
               title="Click to copy phone number"
             >
               {copiedPhone ? (
                 <>
                   <Check className="w-3.5 h-3.5 text-emerald-400" />
-                  <span className="text-emerald-400 font-semibold">Copied!</span>
+                  <span className="font-semibold">Copied!</span>
                 </>
               ) : (
                 <>
-                  <Copy className="w-3.5 h-3.5 text-gray-400" />
+                  <Copy className="w-3.5 h-3.5 text-zinc-400" />
                   <span>Copy Phone</span>
                 </>
               )}
@@ -157,37 +150,37 @@ export default function ExecutiveProfile() {
           </div>
 
           {/* Social Links Row */}
-          <div className="flex items-center justify-between pt-1 border-t border-white/5 text-gray-400 text-xs">
+          <div className="flex items-center justify-between pt-1 border-t border-white/[0.06] text-zinc-400 text-xs">
             <a
               href={`mailto:${PERSONAL_INFO.email}`}
-              className="flex items-center gap-1.5 hover:text-white transition-colors py-1"
+              className="flex items-center gap-1.5 hover:text-zinc-100 transition-colors py-1"
             >
-              <Mail className="w-3.5 h-3.5 text-primary-violet" />
+              <Mail className="w-3.5 h-3.5 text-sky-400" />
               <span>Email</span>
             </a>
             <a
               href={`tel:${PERSONAL_INFO.phone}`}
-              className="flex items-center gap-1.5 hover:text-white transition-colors py-1"
+              className="flex items-center gap-1.5 hover:text-zinc-100 transition-colors py-1"
             >
-              <Phone className="w-3.5 h-3.5 text-accent-emerald" />
+              <Phone className="w-3.5 h-3.5 text-zinc-400" />
               <span>{PERSONAL_INFO.phone}</span>
             </a>
             <a
               href={PERSONAL_INFO.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 hover:text-white transition-colors py-1"
+              className="flex items-center gap-1.5 hover:text-zinc-100 transition-colors py-1"
             >
-              <GithubIcon className="w-3.5 h-3.5" />
+              <GithubIcon className="w-3.5 h-3.5 text-zinc-400" />
               <span>GitHub</span>
             </a>
             <a
               href={PERSONAL_INFO.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 hover:text-white transition-colors py-1"
+              className="flex items-center gap-1.5 hover:text-zinc-100 transition-colors py-1"
             >
-              <LinkedinIcon className="w-3.5 h-3.5 text-accent-blue" />
+              <LinkedinIcon className="w-3.5 h-3.5 text-zinc-400" />
               <span>LinkedIn</span>
             </a>
           </div>
@@ -199,19 +192,19 @@ export default function ExecutiveProfile() {
         {HIGHLIGHT_METRICS.map((metric) => (
           <div
             key={metric.label}
-            className="glass-panel p-3 rounded-xl border-white/5 flex flex-col justify-between hover:border-white/10 transition-colors"
+            className="glass-panel p-3 rounded-xl border-white/[0.07] flex flex-col justify-between hover:border-white/15 transition-colors"
           >
             <div className="flex items-baseline justify-between">
-              <span className="font-heading font-black text-2xl text-white tracking-tight">
+              <span className="font-heading font-black text-2xl text-zinc-100 tracking-tight">
                 {metric.value}
               </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-primary-violet" />
+              <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
             </div>
             <div className="mt-1">
-              <div className="text-[11px] font-semibold text-gray-200">
+              <div className="text-[11px] font-semibold text-zinc-200">
                 {metric.label}
               </div>
-              <div className="text-[10px] text-gray-400 line-clamp-1">
+              <div className="text-[10px] text-zinc-400 line-clamp-1">
                 {metric.detail}
               </div>
             </div>
@@ -219,19 +212,19 @@ export default function ExecutiveProfile() {
         ))}
       </div>
 
-      {/* 3. Compact Tech Stack Card */}
-      <div className="glass-panel p-4 rounded-2xl flex-1 flex flex-col gap-3 min-h-0">
+      {/* 3. Compact Tech Stack Card - Unified Linear Styling */}
+      <div className="glass-panel p-4 rounded-2xl flex-1 flex flex-col gap-3 min-h-0 border-white/[0.07]">
         <div className="flex items-center justify-between">
-          <h2 className="text-xs font-bold text-gray-200 tracking-wider uppercase font-mono">
+          <h2 className="text-xs font-bold text-zinc-200 tracking-wider uppercase font-mono">
             Core Competencies
           </h2>
-          <span className="text-[10px] text-gray-400">HR Keyword Scan</span>
+          <span className="text-[10px] text-zinc-400">HR Keyword Scan</span>
         </div>
 
         <div className="flex flex-col gap-2.5 overflow-y-auto custom-scrollbar pr-0.5">
           {SKILL_CATEGORIES.map((cat) => (
             <div key={cat.title} className="flex flex-col gap-1.5">
-              <div className="flex items-center gap-1.5 text-[11px] font-semibold text-gray-300">
+              <div className="flex items-center gap-1.5 text-[11px] font-semibold text-zinc-300">
                 {getCategoryIcon(cat.iconName)}
                 <span>{cat.title}</span>
               </div>
@@ -239,9 +232,7 @@ export default function ExecutiveProfile() {
                 {cat.skills.map((skill) => (
                   <span
                     key={skill}
-                    className={`text-[10.5px] px-2 py-0.5 rounded-md border font-medium transition-colors ${getCategoryBadgeClass(
-                      cat.color
-                    )}`}
+                    className="text-[10.5px] px-2 py-0.5 rounded-md bg-zinc-900/90 text-zinc-300 border border-white/[0.08] hover:border-sky-400/40 hover:text-white transition-colors font-medium"
                   >
                     {skill}
                   </span>
@@ -254,4 +245,3 @@ export default function ExecutiveProfile() {
     </aside>
   );
 }
-
