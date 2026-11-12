@@ -2,13 +2,14 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FolderGit2, Briefcase, Cpu, Terminal } from "lucide-react";
+import { FolderGit2, Briefcase, Cpu, Terminal, Layers } from "lucide-react";
 import ExecutiveProfile from "@/components/ExecutiveProfile";
 import ProjectsMasterDetail from "@/components/ProjectsMasterDetail";
+import CoreCompetenciesTab from "@/components/CoreCompetenciesTab";
 import ExperienceEducationTab from "@/components/ExperienceEducationTab";
 import InterviewHighlightsTab from "@/components/InterviewHighlightsTab";
 
-type TabKey = "projects" | "experience" | "interview";
+export type TabKey = "projects" | "skills" | "experience" | "interview";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<TabKey>("projects");
@@ -21,13 +22,19 @@ export default function Home() {
       icon: <FolderGit2 className="w-4 h-4" />
     },
     {
+      key: "skills",
+      label: "Core Competencies",
+      count: "4 Domains",
+      icon: <Layers className="w-4 h-4" />
+    },
+    {
       key: "experience",
       label: "Work Experience & Education",
       icon: <Briefcase className="w-4 h-4" />
     },
     {
       key: "interview",
-      label: "Backend Engineering & Interview Highlights",
+      label: "Interview Highlights",
       icon: <Cpu className="w-4 h-4" />
     }
   ];
@@ -40,11 +47,11 @@ export default function Home() {
       {/* Main 12-Column Grid */}
       <main className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-3.5 relative z-10 pb-2">
         {/* Left Column (lg:col-span-4) - Executive Profile & Quick Actions */}
-        <ExecutiveProfile />
+        <ExecutiveProfile onSelectTab={setActiveTab} activeTab={activeTab} />
 
         {/* Right Column (lg:col-span-8) - Interactive Command Center */}
         <section className="lg:col-span-8 flex flex-col gap-3 min-h-0">
-          {/* Top Navigation Bar */}
+          {/* Top Navigation Bar with Core Competencies Tab */}
           <nav className="glass-panel p-1.5 rounded-2xl flex items-center justify-between gap-1.5 shrink-0 border-slate-200/90 shadow-sm">
             <div className="flex items-center gap-1 overflow-x-auto no-scrollbar w-full sm:w-auto">
               {tabs.map((tab) => {
@@ -109,6 +116,19 @@ export default function Home() {
                   className="flex-1 flex flex-col"
                 >
                   <ProjectsMasterDetail />
+                </motion.div>
+              )}
+
+              {activeTab === "skills" && (
+                <motion.div
+                  key="skills"
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.16 }}
+                  className="flex-1 flex flex-col"
+                >
+                  <CoreCompetenciesTab />
                 </motion.div>
               )}
 

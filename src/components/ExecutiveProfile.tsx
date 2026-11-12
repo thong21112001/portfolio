@@ -9,21 +9,23 @@ import {
   Mail, 
   Phone, 
   ExternalLink,
-  Server,
-  Database,
-  Workflow,
-  Terminal,
-  MapPin
+  MapPin,
+  Layers,
+  ArrowRight
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import { 
   PERSONAL_INFO, 
-  HIGHLIGHT_METRICS, 
-  SKILL_CATEGORIES,
-  CORE_KEY_SKILLS
+  HIGHLIGHT_METRICS
 } from "@/constants/data";
+import { TabKey } from "@/app/page";
 
-export default function ExecutiveProfile() {
+interface ExecutiveProfileProps {
+  onSelectTab?: (tab: TabKey) => void;
+  activeTab?: TabKey;
+}
+
+export default function ExecutiveProfile({ onSelectTab, activeTab }: ExecutiveProfileProps) {
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
 
@@ -45,26 +47,6 @@ export default function ExecutiveProfile() {
     } catch {
       // Fallback
     }
-  };
-
-  const getCategoryIcon = (iconName: string) => {
-    switch (iconName) {
-      case "server":
-        return <Server className="w-3.5 h-3.5 text-blue-600" />;
-      case "database":
-        return <Database className="w-3.5 h-3.5 text-indigo-600" />;
-      case "integrations":
-        return <Workflow className="w-3.5 h-3.5 text-emerald-600" />;
-      case "terminal":
-      default:
-        return <Terminal className="w-3.5 h-3.5 text-amber-600" />;
-    }
-  };
-
-  const isKeySkill = (skill: string) => {
-    return CORE_KEY_SKILLS.some((keySkill) =>
-      skill.toLowerCase().includes(keySkill.toLowerCase())
-    );
   };
 
   const getKpiAccent = (accent?: string) => {
@@ -284,44 +266,37 @@ export default function ExecutiveProfile() {
         })}
       </div>
 
-      {/* 3. Core Competencies Card - Always 100% visible, fully rendered without collapsing */}
-      <div className="glass-panel p-4 rounded-2xl flex flex-col gap-3 border-slate-200/90 shadow-sm shrink-0">
-        <div className="flex items-center justify-between pb-1.5 border-b border-slate-200/80">
-          <h2 className="text-xs font-bold text-slate-900 tracking-wider uppercase font-mono flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-blue-600" />
-            <span>Core Competencies</span>
-          </h2>
-          <span className="text-[10.5px] font-mono text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
-            CV Match
-          </span>
+      {/* 3. Core Competencies Quick Navigation Card */}
+      <div 
+        onClick={() => onSelectTab && onSelectTab("skills")}
+        className={`glass-panel p-3.5 rounded-2xl border transition-all cursor-pointer shadow-2xs flex items-center justify-between group ${
+          activeTab === "skills"
+            ? "border-blue-500 bg-blue-50/50 shadow-xs"
+            : "border-slate-200/90 hover:border-blue-300 hover:bg-slate-50/80"
+        }`}
+      >
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 shadow-2xs group-hover:scale-105 transition-transform">
+            <Layers className="w-4 h-4" />
+          </div>
+          <div>
+            <div className="flex items-center gap-1.5">
+              <span className="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+                Core Competencies
+              </span>
+              <span className="text-[9.5px] font-mono text-blue-700 bg-blue-50 px-1.5 py-0.2 rounded border border-blue-200 font-semibold">
+                4 Domains
+              </span>
+            </div>
+            <div className="text-[10.5px] text-slate-500 line-clamp-1 mt-0.5">
+              NestJS • .NET 8 • MongoDB • Redis • Integrations
+            </div>
+          </div>
         </div>
 
-        <div className="flex flex-col gap-3">
-          {SKILL_CATEGORIES.map((cat) => (
-            <div key={cat.title} className="flex flex-col gap-1.5">
-              <div className="flex items-center gap-1.5 text-[11px] font-bold text-slate-800">
-                {getCategoryIcon(cat.iconName)}
-                <span>{cat.title}</span>
-              </div>
-              <div className="flex flex-wrap gap-1.5">
-                {cat.skills.map((skill) => {
-                  const isKey = isKeySkill(skill);
-                  return (
-                    <span
-                      key={skill}
-                      className={`text-[10.5px] px-2 py-0.5 rounded-md border transition-all ${
-                        isKey
-                          ? "bg-blue-50 text-blue-700 border-blue-200 font-semibold shadow-2xs hover:bg-blue-100"
-                          : "bg-slate-100 text-slate-700 border-slate-200 font-medium hover:bg-slate-200/80"
-                      }`}
-                    >
-                      {skill}
-                    </span>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
+        <div className="text-xs font-semibold text-blue-600 group-hover:text-blue-700 flex items-center gap-1 shrink-0 ml-2">
+          <span className="hidden sm:inline">View Nav Tab</span>
+          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
         </div>
       </div>
     </aside>
