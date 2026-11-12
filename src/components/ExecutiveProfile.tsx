@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { 
   FileDown, 
   Copy, 
@@ -9,12 +10,18 @@ import {
   Phone, 
   ExternalLink,
   Server,
-  Code2,
   Database,
-  Workflow
+  Workflow,
+  Terminal,
+  MapPin
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
-import { PERSONAL_INFO, HIGHLIGHT_METRICS, SKILL_CATEGORIES } from "@/constants/data";
+import { 
+  PERSONAL_INFO, 
+  HIGHLIGHT_METRICS, 
+  SKILL_CATEGORIES,
+  CORE_KEY_SKILLS
+} from "@/constants/data";
 
 export default function ExecutiveProfile() {
   const [copiedEmail, setCopiedEmail] = useState(false);
@@ -43,62 +50,124 @@ export default function ExecutiveProfile() {
   const getCategoryIcon = (iconName: string) => {
     switch (iconName) {
       case "server":
-        return <Server className="w-3.5 h-3.5 text-sky-400" />;
-      case "code":
-        return <Code2 className="w-3.5 h-3.5 text-sky-400" />;
+        return <Server className="w-3.5 h-3.5 text-blue-600" />;
       case "database":
-        return <Database className="w-3.5 h-3.5 text-sky-400" />;
+        return <Database className="w-3.5 h-3.5 text-indigo-600" />;
+      case "integrations":
+        return <Workflow className="w-3.5 h-3.5 text-emerald-600" />;
+      case "terminal":
       default:
-        return <Workflow className="w-3.5 h-3.5 text-sky-400" />;
+        return <Terminal className="w-3.5 h-3.5 text-amber-600" />;
+    }
+  };
+
+  const isKeySkill = (skill: string) => {
+    return CORE_KEY_SKILLS.some((keySkill) =>
+      skill.toLowerCase().includes(keySkill.toLowerCase())
+    );
+  };
+
+  const getKpiAccent = (accent?: string) => {
+    switch (accent) {
+      case "blue":
+        return {
+          border: "border-l-4 border-l-blue-600",
+          dot: "bg-blue-600",
+          badge: "bg-blue-50 text-blue-700"
+        };
+      case "indigo":
+        return {
+          border: "border-l-4 border-l-indigo-600",
+          dot: "bg-indigo-600",
+          badge: "bg-indigo-50 text-indigo-700"
+        };
+      case "emerald":
+        return {
+          border: "border-l-4 border-l-emerald-600",
+          dot: "bg-emerald-600",
+          badge: "bg-emerald-50 text-emerald-700"
+        };
+      case "amber":
+      default:
+        return {
+          border: "border-l-4 border-l-amber-500",
+          dot: "bg-amber-500",
+          badge: "bg-amber-50 text-amber-700"
+        };
     }
   };
 
   return (
-    <aside className="lg:col-span-4 flex flex-col gap-3.5 lg:h-full lg:overflow-y-auto custom-scrollbar pr-0 lg:pr-1">
-      {/* 1. Header Card */}
-      <div className="glass-panel p-4.5 sm:p-5 rounded-2xl flex flex-col gap-3.5 relative overflow-hidden shrink-0 border-white/[0.07]">
-        {/* Status Badge */}
+    <aside className="lg:col-span-4 flex flex-col gap-3.5 pr-0 lg:pr-1">
+      {/* 1. Header Card with Integrated Avatar */}
+      <div className="glass-panel p-4 rounded-2xl flex flex-col gap-3 relative overflow-hidden border-slate-200/90 shadow-sm">
+        {/* Top Status Row */}
         <div className="flex items-center justify-between">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-[11px] font-medium tracking-wide">
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[11px] font-semibold tracking-wide shadow-2xs">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600" />
             </span>
-            <span>Available for Interview • Da Nang, VN</span>
+            <span>Available for Interview</span>
+            <span className="text-emerald-400">•</span>
+            <span className="text-emerald-600 font-medium inline-flex items-center gap-0.5">
+              <MapPin className="w-3 h-3 inline" /> Da Nang, VN
+            </span>
           </div>
 
-          <span className="text-[10px] text-zinc-500 font-mono">Bento v2.0</span>
+          <span className="text-[10px] text-slate-400 font-mono font-medium">Verified Profile</span>
         </div>
 
-        {/* Name & Title */}
-        <div>
-          <h1 className="font-heading font-extrabold text-2xl sm:text-3xl text-zinc-100 tracking-tight leading-tight">
-            {PERSONAL_INFO.name}
-          </h1>
-          <div className="text-sm font-semibold text-sky-400 mt-0.5">
-            {PERSONAL_INFO.title}
+        {/* Profile Details with Avatar */}
+        <div className="flex items-center gap-3.5">
+          {/* Avatar Container */}
+          <div className="relative shrink-0">
+            <div className="w-18 h-18 sm:w-20 sm:h-20 rounded-2xl p-0.5 bg-gradient-to-b from-blue-50 to-slate-100 ring-2 ring-blue-600/20 border-2 border-white shadow-md overflow-hidden flex items-center justify-center">
+              <Image
+                src={PERSONAL_INFO.avatarPath}
+                alt={PERSONAL_INFO.name}
+                width={80}
+                height={80}
+                className="w-full h-full object-cover object-top rounded-xl"
+                priority
+              />
+            </div>
+            <span className="absolute -bottom-1 -right-1 flex h-3.5 w-3.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500 border-2 border-white" />
+            </span>
           </div>
-          <p className="text-[12px] text-zinc-400 mt-0.5 font-mono">
-            {PERSONAL_INFO.subtitle}
-          </p>
+
+          {/* Name & Title */}
+          <div className="min-w-0 flex-1">
+            <h1 className="font-heading font-extrabold text-xl sm:text-[23px] text-slate-900 tracking-tight leading-tight truncate">
+              {PERSONAL_INFO.name}
+            </h1>
+            <div className="text-[12px] font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mt-0.5">
+              SOFTWARE ENGINEER • BACKEND DEVELOPER
+            </div>
+            <p className="text-[11px] text-slate-500 font-mono mt-0.5 truncate">
+              {PERSONAL_INFO.subtitle}
+            </p>
+          </div>
         </div>
 
-        {/* 2-Sentence Concise Summary */}
-        <p className="text-xs text-zinc-300 leading-relaxed">
-          Backend Engineer with 2+ years of production experience designing resilient RESTful APIs, high-throughput e-commerce systems, and SaaS platforms. Specialized in MongoDB aggregation tuning, Redis concurrency control, and clean modular architectures.
+        {/* Professional Summary */}
+        <p className="text-xs text-slate-600 leading-relaxed bg-slate-50/70 p-2.5 rounded-xl border border-slate-200/80">
+          {PERSONAL_INFO.about}
         </p>
 
-        {/* CTAs: Resume (High-Contrast Linear Style) & 1-Click Copy */}
-        <div className="flex flex-col gap-2 pt-1">
+        {/* CTAs: Resume (Primary Accent Gradient) & Quick Action Buttons */}
+        <div className="flex flex-col gap-2 pt-0.5">
           <a
             href={PERSONAL_INFO.resumePath}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full py-2.5 px-4 bg-zinc-100 hover:bg-white text-zinc-950 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 transition-all duration-150 shadow-sm group cursor-pointer"
+            className="w-full py-2.5 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl text-xs font-semibold flex items-center justify-center gap-2 transition-all duration-150 shadow-md shadow-blue-600/20 group cursor-pointer"
           >
-            <FileDown className="w-4 h-4 transition-transform group-hover:-translate-y-0.5 text-zinc-900" />
-            <span>Get Resume (TranQuangThong_CV_EN.pdf)</span>
-            <ExternalLink className="w-3.5 h-3.5 opacity-60 ml-auto text-zinc-900" />
+            <FileDown className="w-4 h-4 transition-transform group-hover:-translate-y-0.5 text-white" />
+            <span>View &amp; Download CV (PDF)</span>
+            <ExternalLink className="w-3.5 h-3.5 opacity-80 ml-auto text-white" />
           </a>
 
           <div className="grid grid-cols-2 gap-2">
@@ -107,19 +176,19 @@ export default function ExecutiveProfile() {
               type="button"
               className={`py-2 px-3 border rounded-xl text-xs font-medium flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
                 copiedEmail
-                  ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400"
-                  : "bg-zinc-900/90 hover:bg-zinc-800/90 text-zinc-300 border-white/[0.08]"
+                  ? "bg-emerald-50 border-emerald-300 text-emerald-700 font-semibold shadow-2xs"
+                  : "bg-slate-50 hover:bg-blue-50/70 text-slate-700 border-slate-200/90 shadow-2xs"
               }`}
               title="Click to copy email address"
             >
               {copiedEmail ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-emerald-400" />
-                  <span className="font-semibold">Copied!</span>
+                  <Check className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>Copied Email!</span>
                 </>
               ) : (
                 <>
-                  <Copy className="w-3.5 h-3.5 text-zinc-400" />
+                  <Copy className="w-3.5 h-3.5 text-slate-500" />
                   <span>Copy Email</span>
                 </>
               )}
@@ -130,19 +199,19 @@ export default function ExecutiveProfile() {
               type="button"
               className={`py-2 px-3 border rounded-xl text-xs font-medium flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
                 copiedPhone
-                  ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400"
-                  : "bg-zinc-900/90 hover:bg-zinc-800/90 text-zinc-300 border-white/[0.08]"
+                  ? "bg-emerald-50 border-emerald-300 text-emerald-700 font-semibold shadow-2xs"
+                  : "bg-slate-50 hover:bg-blue-50/70 text-slate-700 border-slate-200/90 shadow-2xs"
               }`}
               title="Click to copy phone number"
             >
               {copiedPhone ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-emerald-400" />
-                  <span className="font-semibold">Copied!</span>
+                  <Check className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>Copied Phone!</span>
                 </>
               ) : (
                 <>
-                  <Copy className="w-3.5 h-3.5 text-zinc-400" />
+                  <Copy className="w-3.5 h-3.5 text-slate-500" />
                   <span>Copy Phone</span>
                 </>
               )}
@@ -150,93 +219,106 @@ export default function ExecutiveProfile() {
           </div>
 
           {/* Social Links Row */}
-          <div className="flex items-center justify-between pt-1 border-t border-white/[0.06] text-zinc-400 text-xs">
+          <div className="flex items-center justify-between pt-2 border-t border-slate-200/90 text-slate-600 text-xs font-medium">
             <a
               href={`mailto:${PERSONAL_INFO.email}`}
-              className="flex items-center gap-1.5 hover:text-zinc-100 transition-colors py-1"
+              className="flex items-center gap-1.5 hover:text-blue-600 transition-colors py-1"
             >
-              <Mail className="w-3.5 h-3.5 text-sky-400" />
+              <Mail className="w-3.5 h-3.5 text-blue-600" />
               <span>Email</span>
             </a>
             <a
               href={`tel:${PERSONAL_INFO.phone}`}
-              className="flex items-center gap-1.5 hover:text-zinc-100 transition-colors py-1"
+              className="flex items-center gap-1.5 hover:text-indigo-600 transition-colors py-1"
             >
-              <Phone className="w-3.5 h-3.5 text-zinc-400" />
+              <Phone className="w-3.5 h-3.5 text-indigo-600" />
               <span>{PERSONAL_INFO.phone}</span>
             </a>
             <a
               href={PERSONAL_INFO.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 hover:text-zinc-100 transition-colors py-1"
+              className="flex items-center gap-1.5 hover:text-slate-900 transition-colors py-1"
             >
-              <GithubIcon className="w-3.5 h-3.5 text-zinc-400" />
+              <GithubIcon className="w-3.5 h-3.5 text-slate-800" />
               <span>GitHub</span>
             </a>
             <a
               href={PERSONAL_INFO.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 hover:text-zinc-100 transition-colors py-1"
+              className="flex items-center gap-1.5 hover:text-blue-600 transition-colors py-1"
             >
-              <LinkedinIcon className="w-3.5 h-3.5 text-zinc-400" />
+              <LinkedinIcon className="w-3.5 h-3.5 text-blue-600" />
               <span>LinkedIn</span>
             </a>
           </div>
         </div>
       </div>
 
-      {/* 2. KPI Metrics Grid */}
+      {/* 2. KPI Metrics Grid - 4 Focal Points for Recruiters */}
       <div className="grid grid-cols-2 gap-2.5 shrink-0">
-        {HIGHLIGHT_METRICS.map((metric) => (
-          <div
-            key={metric.label}
-            className="glass-panel p-3 rounded-xl border-white/[0.07] flex flex-col justify-between hover:border-white/15 transition-colors"
-          >
-            <div className="flex items-baseline justify-between">
-              <span className="font-heading font-black text-2xl text-zinc-100 tracking-tight">
-                {metric.value}
-              </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
-            </div>
-            <div className="mt-1">
-              <div className="text-[11px] font-semibold text-zinc-200">
-                {metric.label}
+        {HIGHLIGHT_METRICS.map((metric) => {
+          const accent = getKpiAccent(metric.accentColor);
+          return (
+            <div
+              key={metric.label}
+              className={`bg-white p-3 rounded-xl border border-slate-200/90 shadow-2xs flex flex-col justify-between hover:shadow-sm hover:border-blue-300 transition-all ${accent.border}`}
+            >
+              <div className="flex items-baseline justify-between">
+                <span className="font-heading font-black text-2xl text-slate-900 tracking-tight">
+                  {metric.value}
+                </span>
+                <span className={`w-2 h-2 rounded-full ${accent.dot}`} />
               </div>
-              <div className="text-[10px] text-zinc-400 line-clamp-1">
-                {metric.detail}
+              <div className="mt-1">
+                <div className="text-[11px] font-bold text-slate-800">
+                  {metric.label}
+                </div>
+                <div className="text-[10px] text-slate-500 line-clamp-1 mt-0.5">
+                  {metric.detail}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
-      {/* 3. Compact Tech Stack Card - Unified Linear Styling */}
-      <div className="glass-panel p-4 rounded-2xl flex-1 flex flex-col gap-3 min-h-0 border-white/[0.07]">
-        <div className="flex items-center justify-between">
-          <h2 className="text-xs font-bold text-zinc-200 tracking-wider uppercase font-mono">
-            Core Competencies
+      {/* 3. Core Competencies Card - Always 100% visible, fully rendered without collapsing */}
+      <div className="glass-panel p-4 rounded-2xl flex flex-col gap-3 border-slate-200/90 shadow-sm shrink-0">
+        <div className="flex items-center justify-between pb-1.5 border-b border-slate-200/80">
+          <h2 className="text-xs font-bold text-slate-900 tracking-wider uppercase font-mono flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-blue-600" />
+            <span>Core Competencies</span>
           </h2>
-          <span className="text-[10px] text-zinc-400">HR Keyword Scan</span>
+          <span className="text-[10.5px] font-mono text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+            CV Match
+          </span>
         </div>
 
-        <div className="flex flex-col gap-2.5 overflow-y-auto custom-scrollbar pr-0.5">
+        <div className="flex flex-col gap-3">
           {SKILL_CATEGORIES.map((cat) => (
             <div key={cat.title} className="flex flex-col gap-1.5">
-              <div className="flex items-center gap-1.5 text-[11px] font-semibold text-zinc-300">
+              <div className="flex items-center gap-1.5 text-[11px] font-bold text-slate-800">
                 {getCategoryIcon(cat.iconName)}
                 <span>{cat.title}</span>
               </div>
               <div className="flex flex-wrap gap-1.5">
-                {cat.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="text-[10.5px] px-2 py-0.5 rounded-md bg-zinc-900/90 text-zinc-300 border border-white/[0.08] hover:border-sky-400/40 hover:text-white transition-colors font-medium"
-                  >
-                    {skill}
-                  </span>
-                ))}
+                {cat.skills.map((skill) => {
+                  const isKey = isKeySkill(skill);
+                  return (
+                    <span
+                      key={skill}
+                      className={`text-[10.5px] px-2 py-0.5 rounded-md border transition-all ${
+                        isKey
+                          ? "bg-blue-50 text-blue-700 border-blue-200 font-semibold shadow-2xs hover:bg-blue-100"
+                          : "bg-slate-100 text-slate-700 border-slate-200 font-medium hover:bg-slate-200/80"
+                      }`}
+                    >
+                      {skill}
+                    </span>
+                  );
+                })}
               </div>
             </div>
           ))}

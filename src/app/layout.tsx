@@ -14,13 +14,27 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: "Tran Quang Thong | Software Engineer Portfolio",
-  description: "Portfolio of Tran Quang Thong, a Software Engineer specializing in designing and developing production-grade RESTful APIs using NestJS, TypeScript, .NET 8, MongoDB, and SQL Server. Exploring clean architecture, performance optimization, and reliable system integrations.",
-  keywords: ["Tran Quang Thong", "Software Engineer", "Backend Developer", "NestJS Developer", ".NET Developer", "Da Nang Developer", "TypeScript", "C#", "MongoDB", "Clean Architecture", "Vietnamese Developer"],
+  description:
+    "Portfolio of Tran Quang Thong, a Software Engineer specializing in designing and developing production-grade RESTful APIs using NestJS, TypeScript, .NET 8, MongoDB, and SQL Server. Exploring Clean Architecture, performance optimization, and reliable system integrations.",
+  keywords: [
+    "Tran Quang Thong",
+    "Software Engineer",
+    "Backend Developer",
+    "NestJS Developer",
+    ".NET Developer",
+    "Da Nang Developer",
+    "TypeScript",
+    "C#",
+    "MongoDB",
+    "Clean Architecture",
+    "CQRS",
+    "Vietnamese Developer"
+  ],
   authors: [{ name: "Tran Quang Thong", url: "https://github.com/thong21112001" }],
   openGraph: {
     title: "Tran Quang Thong | Software Engineer Portfolio",
     description: "Production-grade backend engineering with NestJS, TypeScript, C#, and MongoDB.",
-    url: "https://github.com/thong21112001",
+    url: "https://portfolio-beige-psi-27.vercel.app",
     siteName: "Tran Quang Thong Portfolio",
     type: "website",
     locale: "en_US",
@@ -44,7 +58,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${inter.variable} ${outfit.variable} font-sans antialiased text-fg-light bg-bg-dark`}
+        className={`${inter.variable} ${outfit.variable} font-sans antialiased text-slate-800 bg-[#F8FAFC]`}
       >
         {children}
       </body>

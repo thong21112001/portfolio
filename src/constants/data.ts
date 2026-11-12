@@ -35,7 +35,7 @@ export interface EducationItem {
 
 export interface SkillCategory {
   title: string;
-  iconName: "server" | "code" | "database" | "integrations";
+  iconName: "server" | "database" | "integrations" | "terminal";
   color: string;
   skills: string[];
 }
@@ -44,6 +44,7 @@ export interface HighlightMetric {
   value: string;
   label: string;
   detail: string;
+  accentColor?: "blue" | "indigo" | "emerald" | "amber";
 }
 
 export interface TechnicalHighlight {
@@ -60,139 +61,264 @@ export interface TechnicalHighlight {
 
 export const PERSONAL_INFO = {
   name: "Tran Quang Thong",
-  title: "Backend Software Engineer",
-  subtitle: "NestJS / TypeScript • ASP.NET Core (.NET 8) • Distributed Systems",
-  about: "Backend Engineer with 2+ years of production experience designing resilient RESTful APIs, high-throughput e-commerce systems, and SaaS platforms. Specialized in MongoDB aggregation tuning, Redis concurrency control, and clean modular architectures.",
-  tagline: "Building scalable backend systems with a focus on clean architecture, clean code, and maximum performance.",
+  title: "Software Engineer",
+  subtitle: "Backend Developer • NestJS / TypeScript • .NET 8",
+  about:
+    "Backend Engineer with hands-on experience designing, building, and optimizing production-grade RESTful APIs using NestJS, TypeScript, Node.js, and .NET. Proven track record in delivering multi-platform e-commerce, digital ordering, and logistics systems featuring complex database query optimization, third-party payment and shipping integrations, and Role-Based Access Control (RBAC). Strong focus on Clean Architecture, high-concurrency data consistency, secure coding, and seamless collaboration with frontend and mobile teams.",
+  tagline:
+    "Building scalable backend systems with a focus on Clean Architecture, data consistency, and high performance.",
   email: "quangthong211101@gmail.com",
   phone: "0367262415",
   location: "Da Nang, Vietnam",
   github: "https://github.com/thong21112001",
   linkedin: "https://www.linkedin.com/in/quang-thong-tran-4885b3238",
-  facebook: "https://www.facebook.com/quangthong211101",
+  portfolioUrl: "https://portfolio-beige-psi-27.vercel.app",
   dob: "21/11/2001",
+  avatarPath: "/Avatar.png",
   resumePath: "/TranQuangThong_CV_EN.pdf"
 };
 
 export const HIGHLIGHT_METRICS: HighlightMetric[] = [
-  { value: "2+", label: "Years Backend Exp", detail: "NestJS & .NET 8 in Production" },
-  { value: "50+", label: "Active F&B Stores", detail: "iMenu SaaS Nationwide" },
-  { value: "35%", label: "Query Speedup", detail: "MongoDB Aggregation & Redis" },
-  { value: "3.64", label: "Engineering GPA", detail: "Duy Tan University (/4.0)" }
+  {
+    value: "40%",
+    label: "Code Duplication Reduced",
+    detail: "DRY & Clean Architecture Refactoring",
+    accentColor: "blue"
+  },
+  {
+    value: "50+",
+    label: "Active F&B Businesses",
+    detail: "iMenu Smart Ordering SaaS Nationwide",
+    accentColor: "indigo"
+  },
+  {
+    value: "4+",
+    label: "E-Commerce Ecosystems",
+    detail: "HappyCo, Vmix, Vinabill, Bep Nha Thu",
+    accentColor: "emerald"
+  },
+  {
+    value: "3.64",
+    label: "Software Engineering GPA",
+    detail: "Duy Tan University (Graduated / 4.0)",
+    accentColor: "amber"
+  }
 ];
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
-    title: "Core Backend & Architecture",
+    title: "Backend & Architecture",
     iconName: "server",
-    color: "violet",
+    color: "blue",
     skills: [
       "NestJS",
       "Node.js",
+      "TypeScript",
+      "JavaScript",
       "ASP.NET Core (.NET 8)",
+      "C#",
       "Clean Architecture",
       "CQRS",
-      "Repository & UoW",
+      "Repository & Unit of Work",
       "RESTful APIs"
     ]
   },
   {
-    title: "Languages & ORMs",
-    iconName: "code",
-    color: "emerald",
-    skills: [
-      "TypeScript",
-      "C#",
-      "JavaScript",
-      "SQL",
-      "Entity Framework Core",
-      "Mongoose ODM",
-      "LINQ"
-    ]
-  },
-  {
-    title: "Databases, Caching & Cloud",
+    title: "Databases & Caching",
     iconName: "database",
-    color: "blue",
+    color: "indigo",
     skills: [
-      "MongoDB (Aggregation)",
+      "MongoDB (Mongoose, Aggregation Pipelines)",
       "SQL Server",
       "MySQL",
-      "Redis (Caching & Locks)",
-      "AWS S3",
-      "Firebase (Auth/Storage)"
+      "Entity Framework Core",
+      "LINQ",
+      "Redis"
     ]
   },
   {
-    title: "Integrations & DevOps",
+    title: "Third-Party Integrations",
     iconName: "integrations",
+    color: "emerald",
+    skills: [
+      "ZaloPay Payment Gateway",
+      "GHN API",
+      "Viettel Post API",
+      "AWS S3",
+      "Firebase Authentication (OTP SMS)",
+      "Firebase Storage"
+    ]
+  },
+  {
+    title: "DevOps, Security & Tools",
+    iconName: "terminal",
     color: "amber",
     skills: [
-      "ZaloPay Webhook",
-      "GHN & Viettel Post APIs",
       "Docker",
-      "IIS / Nginx / PM2",
-      "Git / GitLab CI",
-      "Swagger / OpenAPI"
+      "PM2",
+      "IIS",
+      "Git",
+      "GitLab",
+      "GitHub",
+      "Swagger/OpenAPI",
+      "JWT Authentication",
+      "RBAC",
+      "Validation",
+      "Logging & Retry Mechanisms"
     ]
+  }
+];
+
+export const CORE_KEY_SKILLS = [
+  "NestJS",
+  "TypeScript",
+  "Node.js",
+  "ASP.NET Core (.NET 8)",
+  "C#",
+  "MongoDB",
+  "Redis",
+  "SQL Server",
+  "Clean Architecture",
+  "CQRS"
+];
+
+export const CORE_ENGINEERING_FOCUS = [
+  {
+    title: "Clean Architecture & CQRS",
+    description: "Layered domain separation, repository patterns, and decoupled command/query pipelines."
+  },
+  {
+    title: "High-Concurrency & Caching",
+    description: "Redis distributed locking, stock consistency, and MongoDB aggregation tuning."
+  },
+  {
+    title: "Payment & Logistics Integrations",
+    description: "ZaloPay idempotent webhooks, automated retries for GHN & Viettel Post carrier APIs."
+  },
+  {
+    title: "API Contract Standardization",
+    description: "Strict class-validator DTOs, centralized error filters, and Swagger OpenAPI contracts."
   }
 ];
 
 export const PROJECTS: Project[] = [
   {
     id: "ecommerce-api",
-    title: "E-commerce Backend System",
-    subtitle: "Backend Developer • HIFIVEPLUS",
-    description: "Designed and implemented high-volume, modular RESTful APIs powering web and mobile e-commerce platforms. Handled complete order lifecycles including shopping carts, voucher validation, inventory, dynamic pricing, and carrier dispatch.",
-    techStack: ["NestJS", "TypeScript", "MongoDB", "Redis", "AWS S3", "Swagger", "ZaloPay", "GHN / Viettel Post"],
+    title: "E-Commerce Ecosystem & Backend System",
+    subtitle: "Backend Developer (NestJS / TypeScript) • HIFIVEPLUS",
+    description:
+      "Designed and developed modular production RESTful APIs using NestJS, TypeScript, MongoDB, Redis, and AWS S3 serving web and mobile ecommerce platforms (HappyCo, Vmix, Vinabill, Bep Nha Thu). Handled complete order lifecycles including shopping carts, instant buy-now flows, voucher validations, dynamic pricing, and carrier dispatch integrations.",
+    techStack: [
+      "NestJS",
+      "TypeScript",
+      "Node.js",
+      "MongoDB",
+      "Redis",
+      "AWS S3",
+      "ZaloPay",
+      "GHN API",
+      "Viettel Post API",
+      "Swagger"
+    ],
     architectureFlow: [
-      "Client Apps",
-      "NestJS REST API + RBAC",
-      "Redis Distributed Lock (Voucher/Stock)",
+      "Client Web / Mobile",
+      "NestJS REST API + RBAC & DTO Validation",
+      "Redis Distributed Lock (Voucher / Stock)",
       "MongoDB Aggregation Pipelines",
-      "ZaloPay Webhook & GHN/ViettelPost Retry"
+      "ZaloPay Webhook & GHN / Viettel Post Retry"
     ],
     metrics: [
-      "35% Faster Dashboard Queries",
       "40% Code Duplication Reduction",
-      "Zero Concurrency Collisions"
+      "35% Faster Aggregation Lookups",
+      "100% Payment Reconciliation Rate"
     ],
     challenges: [
-      "Optimized MongoDB aggregation pipelines to retrieve complex metrics, speeding up dashboard queries by 35%.",
-      "Integrated multi-carrier shipping APIs (Giao Hang Nhanh & Viettel Post) with custom error handling, dynamic cost calculation, and auto-retry policies.",
-      "Secured digital payments via ZaloPay, managing webhook states and reconciliation routines.",
-      "Applied DRY and Clean Architecture structures, reducing code duplication by 40% across modules.",
-      "Resolved race conditions in concurrent voucher redemption and inventory updates using Redis locks."
+      "E-Commerce Ecosystem (HappyCo, Vmix, Vinabill, Bep Nha Thu): Designed and developed modular production RESTful APIs using NestJS, TypeScript, MongoDB, Redis, and AWS S3 serving web and mobile ecommerce applications.",
+      "Order Lifecycle & Pricing Engine: Engineered end-to-end order management covering cart workflows, instant buy-now flows, admin order creation, dynamic pricing, voucher validation logic, real-time inventory updates, and ZaloPay payment integration.",
+      "Database & Query Optimization: Optimized complex multi-collection data lookups using MongoDB Aggregation Pipelines and Redis caching to significantly reduce API response times under high traffic.",
+      "Resilient Logistics Integrations: Implemented comprehensive DTO validation, centralized error handling, structured logging, and automated retry mechanisms for third-party shipping carriers including GHN and Viettel Post.",
+      "Architecture Refactoring: Refactored core backend services following DRY and Clean Architecture principles, reducing codebase duplication by 40% and standardizing Swagger API contracts for frontend/mobile teams."
     ],
     links: {
       demos: [
         { label: "Vmix Vietnam", url: "https://vmixvietnam.vn" },
         { label: "Kho Mộc", url: "https://khomoc.com" },
-        { label: "Giấy in Vinabill", url: "https://vinapos.info" }
+        { label: "Giấy in Vinabill", url: "https://vinapos.info" },
+        { label: "Bếp nhà Thu", url: "https://bepthu-web.dev00.xyz" }
+      ]
+    }
+  },
+  {
+    id: "imenu",
+    title: "iMenu – Digital Menu & Smart Ordering SaaS",
+    subtitle: "Backend Developer (.NET 8 / CQRS) • Khang Thi",
+    description:
+      "Delivered a full-featured smart ordering platform adopted by 50+ F&B businesses nationwide using .NET 8, CQRS, Clean Architecture, and SQL Server; integrated real-time table/order updates, sales reporting, Firebase OTP SMS authentication, and Firebase Storage image offloading.",
+    techStack: [
+      ".NET 8",
+      "C#",
+      "CQRS",
+      "Clean Architecture",
+      "SQL Server",
+      "EF Core",
+      "Firebase OTP SMS",
+      "Firebase Storage",
+      "IIS"
+    ],
+    architectureFlow: [
+      "QR Smart Table Ordering",
+      "Firebase OTP SMS Auth",
+      ".NET 8 CQRS + Unit of Work",
+      "Real-time Order & Table Sync",
+      "SQL Server & Firebase Storage"
+    ],
+    metrics: [
+      "50+ Active F&B Businesses",
+      "Sub-second Table Order Sync",
+      "Zero-downtime Order Processing"
+    ],
+    challenges: [
+      "Delivered a full-featured smart ordering platform adopted by 50+ F&B businesses nationwide using .NET 8, CQRS, Clean Architecture, and SQL Server.",
+      "Integrated real-time table/order updates and sales reporting for kitchen, staff, and restaurant administrators.",
+      "Implemented secure Firebase OTP SMS authentication and offloaded media assets to Firebase Storage.",
+      "Applied CQRS and Repository & Unit of Work patterns for transactional consistency and clear separation of concerns."
+    ],
+    links: {
+      demos: [
+        { label: "Menu Điện Tử", url: "https://menudientu.com" }
       ]
     }
   },
   {
     id: "gov-platform",
-    title: "Provincial Digital Transformation Platform",
-    subtitle: "e-Government Portals • Khang Thi Group",
-    description: "Engineered and deployed digital public service portals for multiple provinces (Quang Tri, Quang Ngai, Dak Lak) aligning with Vietnam's National Digital Transformation roadmap.",
-    techStack: ["ASP.NET Core", ".NET 8", "C#", "SQL Server", "ASP.NET Identity", "Bootstrap", "IIS"],
+    title: "Provincial Digital Transformation Portals",
+    subtitle: "eGovernment & High Concurrency • Khang Thi",
+    description:
+      "Built and deployed eGovernment modules for citizen registration, online form submission, document tracking, and admin dashboards for multiple provinces (Quang Tri, Quang Ngai, Dak Lak) aligned with Vietnam's National Digital Transformation roadmap.",
+    techStack: [
+      "ASP.NET Core",
+      ".NET 8",
+      "C#",
+      "SQL Server",
+      "ASP.NET Identity",
+      "RBAC",
+      "IIS"
+    ],
     architectureFlow: [
-      "e-Citizen Portal",
-      "ASP.NET Core Identity & RBAC",
-      "Approval Workflow Engine",
-      "Batch Export & High-Concurrency Queue",
-      "SQL Server"
+      "e-Citizen Registration Portal",
+      "ASP.NET Core Identity + Strict RBAC",
+      "Multi-Stage Approval Workflow Engine",
+      "Batch Processing & High-Concurrency Queue",
+      "SQL Server & Excel Export"
     ],
     metrics: [
-      "Thousands of Concurrent Submissions",
+      "Thousands of Concurrent Users",
       "100% Audit Trail Compliance",
-      "Automated Multi-Stage Approval Engine"
+      "Automated Multi-Stage Approvals"
     ],
     challenges: [
-      "Built custom forms, secure e-citizen registration, document tracking, and custom approval workflow managers.",
-      "Created high-performance batch processing and background export features, allowing seamless handling of thousands of concurrent portal submissions.",
+      "Built and deployed eGovernment modules for citizen registration, online form submission, document tracking, and admin dashboards aligned with Vietnam's National Digital Transformation roadmap.",
+      "High-Concurrency Optimization: Contributed to database performance tuning and batch processing for thousands of concurrent users handling mass form submissions and Excel data exports/imports.",
       "Enforced rigid Role-Based Access Control (RBAC) and data sanitization guidelines, shielding sensitive public operations."
     ],
     links: {
@@ -202,47 +328,27 @@ export const PROJECTS: Project[] = [
     }
   },
   {
-    id: "imenu",
-    title: "iMenu - Digital Menu & Smart Ordering SaaS",
-    subtitle: "F&B Digital Transformation SaaS",
-    description: "A digital menu and instant order management SaaS deployed across 50+ nationwide food & beverage businesses, enabling real-time table orders, kitchen alerts, and automated receipts.",
-    techStack: [".NET 8", "C#", "EF Core", "SQL Server", "Firebase Auth (OTP)", "Firebase Storage", "IIS"],
-    architectureFlow: [
-      "QR Table Order",
-      "Firebase OTP Auth",
-      ".NET 8 CQRS + Unit of Work",
-      "Real-time Kitchen Sync",
-      "SQL Server & Firebase Storage"
-    ],
-    metrics: [
-      "50+ Active Stores Nationwide",
-      "Sub-second Kitchen Order Sync",
-      "Zero-downtime Order Processing"
-    ],
-    challenges: [
-      "Designed a real-time order synchronization loop, guaranteeing instant order notifications for staff and kitchen.",
-      "Built a secure client authentication mechanism using Firebase OTP SMS and hosted the platform on IIS (imenu.space & menudientu.com).",
-      "Implemented a CQRS design pattern combined with Repository & Unit of Work for reliable transactional isolation."
-    ],
-    links: {
-      demos: [
-        { label: "iMenu Space", url: "https://imenu.space" },
-        { label: "Menu Điện Tử", url: "https://menudientu.com" }
-      ]
-    }
-  },
-  {
     id: "logistics-scale",
     title: "Real-time Truck Scale & Logistics System",
-    subtitle: "Industrial Logistics • Khang Thi Group",
-    description: "High-reliability industrial scale management software interfacing with physical weighing sensors, automating vehicle dispatch, weighbridge ticket printing, and synchronizing data with enterprise ERP systems.",
-    techStack: [".NET 8", "C#", "SQL Server", "Clean Architecture", "Serial Port / RS232", "EF Core", "IIS"],
+    subtitle: "Logistics Automation & Hardware I/O • Khang Thi",
+    description:
+      "Engineered real-time truck scale management modules for logistics operations with strict role-based authorization (RBAC) and secure coding practices in an Agile environment.",
+    techStack: [
+      ".NET 8",
+      "C#",
+      "Clean Architecture",
+      "SQL Server",
+      "Serial Port / RS232",
+      "EF Core",
+      "RBAC",
+      "IIS"
+    ],
     architectureFlow: [
-      "Truck Weighbridge Sensor",
-      "Serial/Socket Ingestion Service",
-      ".NET 8 Clean Architecture",
-      "Automated Weight Audit & Anti-Tamper",
-      "SQL Server & ERP Sync"
+      "Truck Weighbridge Indicator Sensor",
+      "Serial Port / RS232 Ingestion Service",
+      ".NET 8 Clean Architecture & RBAC",
+      "Automated Weight Verification & Anti-Tamper",
+      "SQL Server & Weighbridge Ticket Dispatch"
     ],
     metrics: [
       "100% Weighing Data Accuracy",
@@ -250,9 +356,10 @@ export const PROJECTS: Project[] = [
       "Continuous Offline-First Operation"
     ],
     challenges: [
+      "Logistics Automation: Engineered real-time truck scale management modules for logistics operations with strict role-based authorization (RBAC) and secure coding practices in an Agile environment.",
       "Engineered reliable asynchronous RS232/Serial port protocol communication with industrial weighing indicators.",
-      "Implemented strict weight deviation validation algorithms and anti-tampering audit logs to eliminate weighing fraud.",
-      "Applied Clean Architecture and Repository pattern with SQL Server for offline-first resilience during connectivity drops."
+      "Implemented weight verification logic and anti-tampering audit logs to eliminate weighing fraud and ensure data integrity.",
+      "Applied Clean Architecture with SQL Server for offline-first resilience during connectivity drops."
     ],
     links: {
       demos: [
@@ -265,38 +372,62 @@ export const PROJECTS: Project[] = [
 export const EXPERIENCE: ExperienceItem[] = [
   {
     id: "exp-hifiveplus",
-    role: "Backend Developer",
+    role: "Backend Developer (NestJS / TypeScript)",
     company: "HIFIVEPLUS",
-    period: "11/2025 - Present",
+    period: "11/2025 - 11/2026",
     description: [
-      "Designed and developed modular RESTful APIs using NestJS, TypeScript, and MongoDB for large-scale e-commerce operations.",
-      "Built advanced order lifecycle flows: custom cart rules, voucher validations, dynamic pricing, and carrier dispatch integrations (GHN, Viettel Post).",
-      "Optimized database read/write cycles by engineering complex MongoDB Aggregation pipelines, reducing page load latencies by 35%.",
-      "Refactored legacy services into modular layers, trimming codebase duplication by 40% and enhancing maintainability.",
-      "Implemented Redis distributed locks to resolve race conditions in concurrent flash-sale voucher redemptions."
+      "E-Commerce Ecosystem (HappyCo, Vmix, Vinabill, Bep Nha Thu): Designed and developed modular production RESTful APIs using NestJS, TypeScript, MongoDB, Redis, and AWS S3 serving web and mobile ecommerce applications.",
+      "Order Lifecycle & Pricing Engine: Engineered end-to-end order management covering cart workflows, instant buy-now flows, admin order creation, dynamic pricing, voucher validation logic, real-time inventory updates, and ZaloPay payment integration.",
+      "Database & Query Optimization: Optimized complex multi-collection data lookups using MongoDB Aggregation Pipelines and Redis caching to significantly reduce API response times under high traffic.",
+      "Resilient Logistics Integrations: Implemented comprehensive DTO validation, centralized error handling, structured logging, and automated retry mechanisms for third-party shipping carriers including GHN and Viettel Post.",
+      "Architecture Refactoring: Refactored core backend services following DRY and Clean Architecture principles, reducing codebase duplication by 40% and standardizing Swagger API contracts for frontend/mobile teams."
     ],
-    skills: ["NestJS", "TypeScript", "MongoDB", "Redis", "AWS S3", "ZaloPay", "GHN / Viettel Post"]
+    skills: [
+      "NestJS",
+      "TypeScript",
+      "Node.js",
+      "MongoDB",
+      "Redis",
+      "AWS S3",
+      "ZaloPay",
+      "GHN API",
+      "Viettel Post API",
+      "Clean Architecture",
+      "Swagger"
+    ]
   },
   {
     id: "exp-khangthi",
-    role: ".NET Developer",
-    company: "Khang Thi Group",
+    role: "Backend Developer (.NET / Web Systems)",
+    company: "Khang Thi",
     period: "11/2024 - 11/2025",
     description: [
-      "Developed web platforms and e-Government public service portals for multiple provinces in Vietnam.",
-      "Built citizen registration modules, document management, and reporting dashboard components using .NET 8 and SQL Server.",
-      "Engineered real-time truck scale management features for logistics operations utilizing SQL databases, RS232 serial communication, and Clean Architecture."
+      "iMenu – Digital Menu & Smart Ordering (menudientu.com): Delivered a full-featured smart ordering platform adopted by 50+ F&B businesses nationwide using .NET 8, CQRS, Clean Architecture, and SQL Server; integrated real-time table/order updates, sales reporting, Firebase OTP SMS authentication, and Firebase Storage image offloading.",
+      "Provincial Digital Transformation Portals (Quang Tri, Quang Ngai, Dak Lak): Built and deployed eGovernment modules for citizen registration, online form submission, document tracking, and admin dashboards aligned with Vietnam's National Digital Transformation roadmap.",
+      "High-Concurrency Optimization: Contributed to database performance tuning and batch processing for thousands of concurrent users handling mass form submissions and Excel data exports/imports.",
+      "Logistics Automation: Engineered real-time truck scale management modules for logistics operations with strict role-based authorization (RBAC) and secure coding practices in an Agile environment."
     ],
-    skills: [".NET 8", "C#", "SQL Server", "Clean Architecture", "ASP.NET Identity", "IIS"]
+    skills: [
+      ".NET 8",
+      "C#",
+      "ASP.NET Core",
+      "SQL Server",
+      "Clean Architecture",
+      "CQRS",
+      "Firebase OTP SMS",
+      "Firebase Storage",
+      "RBAC",
+      "IIS"
+    ]
   },
   {
-    id: "exp-intern",
-    role: "IT Intern",
+    id: "exp-vinacen",
+    role: "IT Intern (Web Development)",
     company: "Vinacen",
     period: "02/2023 - 05/2023",
     description: [
-      "Assisted in frontend UI development using HTML, CSS, Bootstrap, jQuery, and AJAX.",
-      "Conducted integration testing and created system documentation for internal applications."
+      "Built responsive website UI and supported feature development using HTML, CSS, Bootstrap, jQuery, and AJAX.",
+      "Assisted with testing, documentation, and implementation of internal features."
     ],
     skills: ["HTML", "CSS", "Bootstrap", "jQuery", "AJAX", "Manual Testing"]
   }
@@ -308,14 +439,10 @@ export const EDUCATION: EducationItem[] = [
     degree: "Bachelor of Software Engineering",
     school: "Duy Tan University",
     period: "08/2019 - 07/2023",
-    details: "Graduated with distinction. Focused on software architecture, clean patterns, database design, and object-oriented paradigms.",
-    gpa: "3.64 / 4.0"
+    details:
+      "Graduated with distinction. Focused on software architecture, clean patterns, database design, and object-oriented paradigms.",
+    gpa: "3.64/4.0"
   }
-];
-
-export const CERTIFICATIONS = [
-  { name: "TOEIC 500 (English Communication)", date: "2023", icon: "badge" },
-  { name: "Japanese Language Proficiency Test (JLPT) - N5", date: "2023", icon: "languages" }
 ];
 
 export const INTERVIEW_HIGHLIGHTS: TechnicalHighlight[] = [
@@ -323,44 +450,56 @@ export const INTERVIEW_HIGHLIGHTS: TechnicalHighlight[] = [
     id: "concurrency-redis",
     title: "Concurrency & Race Condition Handling",
     subtitle: "High-Volume Voucher & Stock Management",
-    category: "Distributed Locking",
+    category: "Distributed Locking & Redis",
     iconName: "lock",
-    problem: "Concurrent requests during flash sales led to duplicate voucher redemptions and negative stock counts.",
-    solution: "Engineered Redis Distributed Locks with fine-grained keys and strict TTL auto-release. Paired with atomic MongoDB operations ($inc, $push) to ensure thread-safe transactions.",
-    impact: "Zero race condition incidents across flash sale events; sustained 1,000+ concurrent checkout requests safely.",
+    problem:
+      "Concurrent requests during flash sales led to duplicate voucher redemptions and negative stock counts across multiple app instances.",
+    solution:
+      "Engineered Redis Distributed Locks with fine-grained resource keys and strict TTL auto-release. Paired with atomic MongoDB operations ($inc, $push) and transaction checks to ensure thread-safe balance operations.",
+    impact:
+      "Zero race condition incidents across flash sale events; sustained 1,000+ concurrent checkout requests safely without stock discrepancy.",
     tags: ["Redis", "Distributed Locks", "NestJS", "Concurrency", "MongoDB"]
   },
   {
     id: "db-optimization",
     title: "Database Query & Aggregation Tuning",
-    subtitle: "High-Throughput Analytics & Reporting",
-    category: "Performance Optimization",
+    subtitle: "High-Throughput Analytics & Multi-Collection Joins",
+    category: "Performance & MongoDB Tuning",
     iconName: "database",
-    problem: "Dashboard reporting queries were scanning millions of unindexed documents, causing 2-3s request timeouts during peak business hours.",
-    solution: "Refactored multi-stage MongoDB Aggregation Pipelines ($match early, optimized $lookup, compound indexing on tenant & timestamp). In .NET, applied EF Core AsNoTracking and projection queries.",
-    impact: "Reduced MongoDB query response times by 35%; lowered database CPU utilization by 28% under continuous traffic.",
+    problem:
+      "Multi-collection dashboard reporting queries were scanning millions of unindexed documents, causing 2-3s request timeouts during peak business hours.",
+    solution:
+      "Refactored multi-stage MongoDB Aggregation Pipelines ($match early, optimized $lookup with projected subfields, compound indexing on tenant & timestamp). In .NET, applied EF Core AsNoTracking and optimized raw projection queries.",
+    impact:
+      "Reduced MongoDB query response times by 35%; lowered database CPU utilization by 28% under continuous peak traffic.",
     tags: ["MongoDB", "Aggregation Pipelines", "Indexing", "EF Core", "SQL Server"]
   },
   {
     id: "clean-arch-cqrs",
     title: "Clean Architecture, CQRS & Modular Design",
-    subtitle: "Enterprise Codebase Scalability",
-    category: "Architecture & Patterns",
+    subtitle: "40% Code Duplication Reduction",
+    category: "Architecture & Scalability",
     iconName: "layers",
-    problem: "Legacy codebase mixed business logic, database queries, and HTTP controllers, causing high coupling and regression bugs on every release.",
-    solution: "Segregated domain logic into distinct Application, Domain, and Infrastructure layers. Implemented CQRS to split read queries from transactional writes, combined with Repository & Unit of Work patterns.",
-    impact: "Reduced code duplication by 40%; accelerated feature onboarding time and achieved testable, decoupled domain logic.",
-    tags: ["CQRS", "Clean Architecture", "Unit of Work", "NestJS Modules", ".NET 8"]
+    problem:
+      "Legacy codebase mixed business logic, database queries, and HTTP controllers, causing high coupling, regression bugs, and painful feature onboarding.",
+    solution:
+      "Segregated domain logic into distinct Application, Domain, and Infrastructure layers. Implemented CQRS to split read queries from transactional writes, combined with Repository & Unit of Work patterns and DRY utility modules.",
+    impact:
+      "Reduced codebase duplication by 40%; standardized Swagger OpenAPI contracts for seamless web and mobile frontend collaboration.",
+    tags: ["Clean Architecture", "CQRS", "DRY", "Unit of Work", "NestJS", ".NET 8"]
   },
   {
     id: "third-party-integrations",
-    title: "Resilient Third-Party Integrations",
-    subtitle: "Payment Gateways & Logistics Carriers",
+    title: "Resilient Logistics & Payment Integrations",
+    subtitle: "Carrier APIs (GHN, Viettel Post) & ZaloPay Gateway",
     category: "Fault Tolerance & Integrations",
     iconName: "refresh-cw",
-    problem: "Carrier API outages (GHN, Viettel Post) and delayed ZaloPay payment webhooks caused dropped orders and reconciliation mismatches.",
-    solution: "Implemented idempotent webhook listeners with cryptographic signature checks, exponential backoff retry workers, and automated order reconciliation cron routines.",
-    impact: "100% payment reconciliation rate; zero dropped shipping orders even during intermittent carrier downtime.",
-    tags: ["ZaloPay Webhook", "GHN API", "Viettel Post API", "Idempotency", "Retry Pattern"]
+    problem:
+      "Carrier API rate limits / downtime (GHN, Viettel Post) and delayed ZaloPay payment webhooks caused dropped orders and reconciliation mismatches.",
+    solution:
+      "Implemented comprehensive DTO validation, centralized error handling, structured logging, exponential backoff retry mechanisms for shipping carriers, and idempotent webhook processing with cryptographic verification.",
+    impact:
+      "100% payment reconciliation rate; zero dropped shipping carrier orders even during intermittent upstream downtime.",
+    tags: ["ZaloPay", "GHN API", "Viettel Post API", "Idempotency", "Retry Policy"]
   }
 ];
